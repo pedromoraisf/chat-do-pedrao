@@ -9,9 +9,9 @@ interface UserData {
 }
 
 export class User {
-  private readonly name: Name;
-  private readonly username: Username;
-  private readonly password: Password;
+  public readonly name: Name;
+  public readonly username: Username;
+  public readonly password: Password;
 
   constructor(name: Name, username: Username, password: Password) {
     this.name = name;
