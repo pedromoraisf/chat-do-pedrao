@@ -28,7 +28,7 @@ export class Username {
 
   static verifyLength(username: string): boolean {
     const MIN_LEN = 2;
-    const MAX_LEN = 10;
+    const MAX_LEN = 50;
 
     return !!(username && username.length >= MIN_LEN && username.length <= MAX_LEN)
   }
