@@ -6,7 +6,11 @@
     "module": "commonjs",
     "esModuleInterop": true,
     "allowJs": true,
-    "strictNullChecks": true
+    "strictNullChecks": true, 
+    "paths": {
+      "@entities/*": ["./src/entities/*"],
+      "@shared/*": ["./src/shared/*"],
+    }
   }, 
   "exclude": [
     "jest.*",
