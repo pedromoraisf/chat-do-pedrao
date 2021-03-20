@@ -9,6 +9,7 @@
     "strictNullChecks": true, 
     "paths": {
       "@entities/*": ["./src/entities/*"],
+      "@usecases/*": ["./src/usecases/*"],
       "@shared/*": ["./src/shared/*"],
     }
   }, 

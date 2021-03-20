@@ -17,6 +17,7 @@ module.exports = {
       {
         alias: {
           "@entities": "./src/entities",
+          "@usecases": "./src/usecases",
           "@shared": "./src/shared",
         },
       },

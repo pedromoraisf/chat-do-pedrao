@@ -14,6 +14,7 @@ module.exports = {
   },
   moduleNameMapper: {
     "@entities/(.*)": "<rootDir>/src/entities/$1",
+    "@usecases/(.*)": "<rootDir>/src/usecases/$1",
     "@shared/(.*)": "<rootDir>/src/shared/$1",
   },
 };
