@@ -5,13 +5,18 @@ interface MessageBucket {
 }
 
 export class Chat {
-  public readonly messages: Array<Message>
+  public messages: Array<Message>
 
-  constructor(message: Array<Message>) {
-    this.messages = message;
+  constructor(message?: Array<Message>) {
+    if (message) this.messages = message;
   }
 
-  static create(messageBucket: MessageBucket): Chat {
+  static bootstrap(messageBucket: MessageBucket): Chat {
     return new Chat(messageBucket.messages)
+  }
+
+  addMessage(message: Message): boolean {
+    this.messages.push(message)
+    return !!this.messages.includes(message)
   }
 }
