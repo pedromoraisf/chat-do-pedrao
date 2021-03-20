@@ -21,13 +21,13 @@ export class User {
 
   static create(userData: UserData): Either<InvalidNameError | InvalidUsernameError, User> {
     const nameOrError: Either<InvalidNameError, Name> = Name.create(userData.name);
-    if (nameOrError.isLeft()) return left(new InvalidNameError(nameOrError.value.message))
+    if (nameOrError.isLeft()) return left(nameOrError.value)
 
     const usernameOrError: Either<InvalidUsernameError, Username> = Username.create(userData.username);
-    if (usernameOrError.isLeft()) return left(new InvalidUsernameError(usernameOrError.value.message))
+    if (usernameOrError.isLeft()) return left(usernameOrError.value)
 
     const passwordOrError: Either<InvalidPasswordError, Password> = Password.create(userData.password);
-    if (passwordOrError.isLeft()) return left(new InvalidPasswordError(passwordOrError.value.message))
+    if (passwordOrError.isLeft()) return left(passwordOrError.value)
 
     const name: Name = nameOrError.value;
     const username: Username = usernameOrError.value;
