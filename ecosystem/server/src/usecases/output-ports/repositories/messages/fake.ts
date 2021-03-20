@@ -1,4 +1,5 @@
-import { MessagesRepository, SavedMessage, makeFakeSavedUser } from "@usecases/output-ports/repositories"
+import { MessagesRepository, SavedMessage, makeFakeSavedUser, RetrievMessagesResponse } from "@usecases/output-ports/repositories"
+import { right } from "@shared/either"
 
 export const makeFakeSavedMessage = (): SavedMessage => ({
   user: makeFakeSavedUser(),
@@ -6,7 +7,8 @@ export const makeFakeSavedMessage = (): SavedMessage => ({
 })
 
 export class FakeMessagesRepository implements MessagesRepository {
-  async retrievMessages(): Promise<Array<SavedMessage>> {
-    return new Promise(resolve => resolve([makeFakeSavedMessage()]))
+  async retrievMessages(): Promise<RetrievMessagesResponse> {
+    const res = [makeFakeSavedMessage()]
+    return new Promise(resolve => resolve(right(res)))
   }
 }
