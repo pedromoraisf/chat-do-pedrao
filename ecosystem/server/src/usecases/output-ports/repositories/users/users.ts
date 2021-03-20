@@ -1,3 +1,6 @@
+import { InfraError } from "@usecases/output-ports/errors"
+import { Either } from "@shared/either"
+
 export interface SavedUser {
   id: string;
   name: string;
@@ -5,6 +8,8 @@ export interface SavedUser {
   password: string;
 }
 
+export type FindAllResponse = Either<InfraError, Array<SavedUser>>
+
 export interface UsersRepository {
-  findAll(): Promise<Array<SavedUser>>
+  findAll(): Promise<FindAllResponse>
 }

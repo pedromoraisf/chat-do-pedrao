@@ -1,4 +1,5 @@
-import { UsersRepository, SavedUser } from "@usecases/output-ports/repositories/users"
+import { UsersRepository, SavedUser, FindAllResponse } from "@usecases/output-ports/repositories/users"
+import { right } from "@shared/either"
 
 export const makeFakeSavedUser = (): SavedUser => ({
   id: "any_id",
@@ -8,7 +9,8 @@ export const makeFakeSavedUser = (): SavedUser => ({
 })
 
 export class FakeUsersRepository implements UsersRepository {
-  async findAll(): Promise<Array<SavedUser>> {
-    return new Promise(resolve => resolve([makeFakeSavedUser()]))
+  async findAll(): Promise<FindAllResponse> {
+    const res = [makeFakeSavedUser()]
+    return new Promise(resolve => resolve(right(res)))
   }
 }
