@@ -1,12 +1,7 @@
 import { Name, Username, Password } from "@entities/user/values"
 import { InvalidNameError, InvalidUsernameError, InvalidPasswordError } from "@entities/user/errors"
+import { UserData } from "@entities/user"
 import { Either, left, right } from "@shared/either"
-
-interface UserData {
-  name: string;
-  username: string;
-  password: string;
-}
 
 export class User {
   public readonly name: Name;
