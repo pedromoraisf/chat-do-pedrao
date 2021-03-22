@@ -1,3 +1,4 @@
+import { Message } from "@entities/message"
 import { SavedUser } from "@usecases/output-ports/repositories"
 import { InfraError } from "@usecases/output-ports/errors"
 import { Either } from "@shared/either"
@@ -7,7 +8,7 @@ export interface SavedMessage {
   message: string;
 }
 
-export type MessageToSave = SavedMessage
+export type MessageToSave = Message
 
 export type RetrievMessagesResponse = Either<InfraError, Array<SavedMessage>>
 export type SaveMessageResponse = Either<InfraError, SavedMessage>
