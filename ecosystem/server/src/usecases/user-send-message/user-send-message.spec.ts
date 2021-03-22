@@ -1,4 +1,5 @@
 import { UserSendMessage, MessagePack } from "@usecases/user-send-message"
+import { FakeMessagesRepository } from "@usecases/output-ports/repositories"
 
 const makeFakeMessagePack = (): MessagePack => ({
   user: {
@@ -13,7 +14,8 @@ const makeFakeMessagePack = (): MessagePack => ({
 })
 
 const makeSut = () => {
-  const sut = new UserSendMessage();
+  const makeFakeMessagesRepository = new FakeMessagesRepository();
+  const sut = new UserSendMessage(makeFakeMessagesRepository);
 
   return {
     sut

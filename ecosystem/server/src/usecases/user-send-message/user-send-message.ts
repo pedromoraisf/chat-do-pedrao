@@ -10,15 +10,15 @@ import { Message } from "@entities/message"
 import { User } from "@entities/user"
 import { MessagePack } from "@usecases/user-send-message"
 import { InvalidNameError, InvalidUsernameError, InvalidPasswordError } from "@entities/user/errors"
-// import { MessagesRepository } from "@usecases/output-ports/repositories"
+import { MessagesRepository } from "@usecases/output-ports/repositories"
 import { Either, left, right } from "@shared/either"
 
 export class UserSendMessage {
-  // private readonly messagesRepository: MessagesRepository;
+  private readonly messagesRepository: MessagesRepository;
 
-  // constructor(messagesRepository: MessagesRepository) {
-  //   this.messagesRepository = messagesRepository
-  // }
+  constructor(messagesRepository: MessagesRepository) {
+    this.messagesRepository = messagesRepository
+  }
 
   async send(messagePack: MessagePack): Promise<Either<InvalidNameError | InvalidUsernameError, Message>> {
     const messageOrError = this.adaptReceivedPackInEntityFormat(messagePack);
