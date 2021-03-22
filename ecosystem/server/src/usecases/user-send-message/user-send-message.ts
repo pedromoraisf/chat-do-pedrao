@@ -29,6 +29,7 @@ export class UserSendMessage {
 
   adaptReceivedPackInEntityFormat(messagePack: MessagePack): Either<InvalidNameError | InvalidUsernameError | InvalidPasswordError, Message> {
     const userOrError = User.create({
+      id: messagePack.user.id,
       name: messagePack.user.name,
       username: messagePack.user.username,
       password: messagePack.user.password

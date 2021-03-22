@@ -30,6 +30,7 @@ export class InitializeChat {
     for (let i = 0; i < repoMessages.length; i++) {
       const message = repoMessages[i];
       const userOrError = User.create({
+        id: message.user.id,
         name: message.user.name,
         username: message.user.username,
         password: message.user.password
