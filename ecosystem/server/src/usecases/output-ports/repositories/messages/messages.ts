@@ -7,8 +7,12 @@ export interface SavedMessage {
   message: string;
 }
 
+export type MessageToSave = SavedMessage
+
 export type RetrievMessagesResponse = Either<InfraError, Array<SavedMessage>>
+export type SaveMessageResponse = Either<InfraError, SavedMessage>
 
 export interface MessagesRepository {
   retrievMessages(): Promise<RetrievMessagesResponse>
+  saveMessage(messageToSave: MessageToSave): Promise<SaveMessageResponse>
 }
