@@ -1,3 +1,4 @@
+import { InvalidNameError } from "@entities/user/errors"
 import { UserSendMessage, MessagePack } from "@usecases/user-send-message"
 import { FakeMessagesRepository } from "@usecases/output-ports/repositories"
 
@@ -31,5 +32,17 @@ describe("Use Case User Send Message Tests", () => {
     await sut.send(fakeMessagePack);
 
     expect(spyAdapter).toHaveBeenCalledWith(fakeMessagePack)
+  })
+
+  test("simulate error cases in adapter to entity method", async () => {
+    const { sut } = makeSut();
+
+    const fakeWrongMessagePack = makeFakeMessagePack();
+    fakeWrongMessagePack.user.name = "";
+
+    const testable = await sut.send(fakeWrongMessagePack);
+
+    expect(testable.isLeft()).toBeTruthy();
+    expect(testable.value).toEqual(new InvalidNameError(fakeWrongMessagePack.user.name))
   })
 })
