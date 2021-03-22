@@ -14,7 +14,7 @@ export class User {
     this.password = password;
   }
 
-  static create(userData: UserData): Either<InvalidNameError | InvalidUsernameError, User> {
+  static create(userData: UserData): Either<InvalidNameError | InvalidUsernameError | InvalidPasswordError, User> {
     const nameOrError: Either<InvalidNameError, Name> = Name.create(userData.name);
     if (nameOrError.isLeft()) return left(nameOrError.value)
 
