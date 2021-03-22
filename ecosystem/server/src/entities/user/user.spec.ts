@@ -2,6 +2,7 @@ import { User } from "@entities/user"
 import { InvalidNameError, InvalidUsernameError, InvalidPasswordError } from "@entities/user/errors"
 
 const makeUserData = () => ({
+  id: "any_id",
   name: "any_name",
   username: "any_username",
   password: "any_password"
