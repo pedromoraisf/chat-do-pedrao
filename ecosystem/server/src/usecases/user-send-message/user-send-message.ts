@@ -13,13 +13,13 @@ export class UserSendMessage {
   }
 
   async send(messagePack: MessagePack): Promise<Either<InvalidNameError | InvalidUsernameError, Message>> {
-    const messageOrError = this.adaptReceivedPackInEntityFormat(messagePack);
-    if (messageOrError.isLeft()) return left(messageOrError.value);
+    const adaptedMessageOrError = this.adaptReceivedPackInEntityFormat(messagePack);
+    if (adaptedMessageOrError.isLeft()) return left(adaptedMessageOrError.value);
 
-    const saveMessageInRepositoryOrError: SaveMessageResponse = await this.messagesRepository.saveMessage(messageOrError.value)
+    const saveMessageInRepositoryOrError: SaveMessageResponse = await this.messagesRepository.saveMessage(adaptedMessageOrError.value)
     if (saveMessageInRepositoryOrError.isLeft()) return left(saveMessageInRepositoryOrError.value)
 
-    return right(messageOrError.value)
+    return right(adaptedMessageOrError.value)
   }
 
   adaptReceivedPackInEntityFormat(messagePack: MessagePack): Either<InvalidNameError | InvalidUsernameError | InvalidPasswordError, Message> {
