@@ -9,24 +9,32 @@
 import { Message } from "@entities/message"
 import { User } from "@entities/user"
 import { MessagePack } from "@usecases/user-send-message"
+import { InvalidNameError, InvalidUsernameError, InvalidPasswordError } from "@entities/user/errors"
+// import { MessagesRepository } from "@usecases/output-ports/repositories"
 import { Either, left, right } from "@shared/either"
 
 export class UserSendMessage {
-  async send(messagePack: MessagePack): Promise<Either<Error, Message>> {
+  // private readonly messagesRepository: MessagesRepository;
+
+  // constructor(messagesRepository: MessagesRepository) {
+  //   this.messagesRepository = messagesRepository
+  // }
+
+  async send(messagePack: MessagePack): Promise<Either<InvalidNameError | InvalidUsernameError, Message>> {
     const messageOrError = this.adaptReceivedPackInEntityFormat(messagePack);
     if (messageOrError.isLeft()) return left(messageOrError.value);
 
     return right(messageOrError.value)
   }
 
-  adaptReceivedPackInEntityFormat(messagePack: MessagePack): Either<Error, Message> {
+  adaptReceivedPackInEntityFormat(messagePack: MessagePack): Either<InvalidNameError | InvalidUsernameError | InvalidPasswordError, Message> {
     const userOrError = User.create({
-      name: messagePack.userData.name,
-      username: messagePack.userData.username,
-      password: messagePack.userData.password
+      name: messagePack.user.name,
+      username: messagePack.user.username,
+      password: messagePack.user.password
     })
     if (userOrError.isLeft()) return left(userOrError.value)
 
-    return right(Message.create(userOrError.value, messagePack));
+    return right(Message.create(userOrError.value, messagePack.content));
   }
 }

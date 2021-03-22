@@ -1,11 +1,14 @@
 import { UserSendMessage, MessagePack } from "@usecases/user-send-message"
 
 const makeFakeMessagePack = (): MessagePack => ({
-  message: "any_message",
-  userData: {
+  user: {
+    id: "any_id",
     name: "any_name",
     username: "any_username",
     password: "any_password"
+  },
+  content: {
+    message: "any_message"
   }
 })
 

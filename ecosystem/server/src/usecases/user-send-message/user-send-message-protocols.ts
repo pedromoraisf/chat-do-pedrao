@@ -1,6 +1,15 @@
-import { UserData } from "@entities/user"
+interface UserReceive {
+  id: string;
+  name: string;
+  username: string;
+  password: string;
+}
+
+interface MessageContent {
+  message: string;
+}
 
 export interface MessagePack {
-  userData: UserData;
-  message: string;
+  user: UserReceive;
+  content: MessageContent;
 }
