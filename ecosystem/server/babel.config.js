@@ -19,6 +19,7 @@ module.exports = {
           "@entities": "./src/entities",
           "@usecases": "./src/usecases",
           "@shared": "./src/shared",
+          "@external": "./src/external",
         },
       },
     ],

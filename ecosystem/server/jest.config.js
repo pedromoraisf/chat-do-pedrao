@@ -17,5 +17,6 @@ module.exports = {
     "@entities/(.*)": "<rootDir>/src/entities/$1",
     "@usecases/(.*)": "<rootDir>/src/usecases/$1",
     "@shared/(.*)": "<rootDir>/src/shared/$1",
+    "@external/(.*)": "<rootDir>/src/external/$1",
   },
 };
