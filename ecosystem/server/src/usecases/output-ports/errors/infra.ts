@@ -1,6 +1,6 @@
 export class InfraError extends Error {
-  constructor() {
-    super(`External infra error.`)
+  constructor(message?: string) {
+    super(`External infra error.\n${message}`)
     this.name = "InfraError"
   }
 }
