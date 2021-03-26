@@ -3,5 +3,5 @@ import { Chat } from "@entities/chat"
 
 export interface WebSocket {
   sendBroadcastToAllListeners(payload: any): Promise<void>;
-  initializeChatToListener(chat: Chat): Promise<void>;
+  initializeChatOnTheListener(chat: Chat): Promise<void>;
 }
