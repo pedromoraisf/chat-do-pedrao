@@ -1,6 +1,7 @@
 import { InvalidNameError } from "@entities/user/errors"
 import { UserSendMessage, MessagePack } from "@usecases/user-send-message"
 import { FakeMessagesRepository } from "@usecases/output-ports/repositories"
+import { FakeWebSocket } from "@usecases/output-ports/communications/web-socket"
 
 const makeFakeMessagePack = (): MessagePack => ({
   user: {
@@ -16,7 +17,8 @@ const makeFakeMessagePack = (): MessagePack => ({
 
 const makeSut = () => {
   const makeFakeMessagesRepository = new FakeMessagesRepository();
-  const sut = new UserSendMessage(makeFakeMessagesRepository);
+  const makeFakeWebSocket = new FakeWebSocket();
+  const sut = new UserSendMessage(makeFakeMessagesRepository, makeFakeWebSocket);
 
   return {
     sut
