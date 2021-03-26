@@ -52,7 +52,7 @@ describe("Use Case Initialize Chat Tests", () => {
   test("should be call web socket inverted dependency correctly", async () => {
     const { sut, fakeWebSocket } = makeSut();
 
-    const spyFakeWebSocket = jest.spyOn(fakeWebSocket, "sendBroadcastToAllListeners");
+    const spyFakeWebSocket = jest.spyOn(fakeWebSocket, "initializeChatOnTheListener");
 
     await sut.init();
 

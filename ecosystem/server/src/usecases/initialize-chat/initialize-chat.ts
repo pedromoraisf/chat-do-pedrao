@@ -26,7 +26,7 @@ export class InitializeChat {
       messages: adaptedMessages
     })
 
-    this.webSocket.sendBroadcastToAllListeners(chat);
+    this.webSocket.initializeChatOnTheListener(chat);
 
     return right(chat)
   }
