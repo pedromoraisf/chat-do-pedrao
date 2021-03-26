@@ -20,8 +20,8 @@ export class InitializeChat {
     if (savedInRepositoryMessages.isLeft()) {
       return left(new LoadMessagesError(savedInRepositoryMessages.value.message))
     }
-    const adaptedMessages = this.adapterRepoMessagesInEntityMessages(savedInRepositoryMessages.value);
 
+    const adaptedMessages = this.adapterRepoMessagesInEntityMessages(savedInRepositoryMessages.value);
     const chat = Chat.bootstrap({
       messages: adaptedMessages
     })

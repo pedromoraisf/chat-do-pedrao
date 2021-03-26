@@ -16,13 +16,13 @@ const makeFakeMessagePack = (): MessagePack => ({
 })
 
 const makeSut = () => {
-  const makedFakeMessagesRepository = new FakeMessagesRepository();
-  const makedFakeWebSocket = new FakeWebSocket();
-  const sut = new UserSendMessage(makedFakeMessagesRepository, makedFakeWebSocket);
+  const fakeMessagesRepository = new FakeMessagesRepository();
+  const fakeWebSocket = new FakeWebSocket();
+  const sut = new UserSendMessage(fakeMessagesRepository, fakeWebSocket);
 
   return {
     sut,
-    makedFakeWebSocket
+    fakeWebSocket
   };
 }
 
@@ -50,9 +50,9 @@ describe("Use Case User Send Message Tests", () => {
   })
 
   test("should be call web socket inverted dependency correctly", async () => {
-    const { sut, makedFakeWebSocket } = makeSut();
+    const { sut, fakeWebSocket } = makeSut();
 
-    const spyFakeWebSocket = jest.spyOn(makedFakeWebSocket, "sendBroadcastToAllListeners");
+    const spyFakeWebSocket = jest.spyOn(fakeWebSocket, "sendBroadcastToAllListeners");
 
     const fakeMessagePack = makeFakeMessagePack()
     const adaptedMessagePack = sut.adaptReceivedPackInEntityFormat(fakeMessagePack);
