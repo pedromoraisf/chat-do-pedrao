@@ -2,14 +2,17 @@ import { User } from "@entities/user"
 import { Chat } from "@entities/chat"
 import { Message } from "@entities/message"
 import { MessagesRepository, SavedMessage } from "@usecases/output-ports/repositories"
+import { WebSocket } from "@usecases/output-ports/communications/web-socket"
 import { LoadMessagesError } from "@usecases/errors"
 import { Either, left, right } from "@shared/either"
 
 export class InitializeChat {
   private readonly messagesRepository: MessagesRepository;
+  private readonly webSocket: WebSocket;
 
-  constructor(messagesRepository: MessagesRepository) {
+  constructor(messagesRepository: MessagesRepository, webSocket: WebSocket) {
     this.messagesRepository = messagesRepository
+    this.webSocket = webSocket
   }
 
   async init(): Promise<Either<LoadMessagesError, Chat>> {
@@ -19,9 +22,13 @@ export class InitializeChat {
     }
     const adaptedMessages = this.adapterRepoMessagesInEntityMessages(savedInRepositoryMessages.value);
 
-    return right(Chat.bootstrap({
+    const chat = Chat.bootstrap({
       messages: adaptedMessages
-    }))
+    })
+
+    this.webSocket.sendBroadcastToAllListeners(chat);
+
+    return right(chat)
   }
 
   adapterRepoMessagesInEntityMessages(repoMessages: Array<SavedMessage>): Array<Message> {
