@@ -3,13 +3,16 @@ import { User } from "@entities/user"
 import { MessagePack } from "@usecases/user-send-message"
 import { InvalidNameError, InvalidUsernameError, InvalidPasswordError } from "@entities/user/errors"
 import { MessagesRepository, SaveMessageResponse } from "@usecases/output-ports/repositories"
+import { WebSocket } from "@usecases/output-ports/communications/web-socket"
 import { Either, left, right } from "@shared/either"
 
 export class UserSendMessage {
   private readonly messagesRepository: MessagesRepository;
+  private readonly webSocket: WebSocket;
 
-  constructor(messagesRepository: MessagesRepository) {
+  constructor(messagesRepository: MessagesRepository, webSocket: WebSocket) {
     this.messagesRepository = messagesRepository
+    this.webSocket = webSocket
   }
 
   async send(messagePack: MessagePack): Promise<Either<InvalidNameError | InvalidUsernameError, Message>> {
@@ -18,6 +21,8 @@ export class UserSendMessage {
 
     const saveMessageInRepositoryOrError: SaveMessageResponse = await this.messagesRepository.saveMessage(adaptedMessageOrError.value)
     if (saveMessageInRepositoryOrError.isLeft()) return left(saveMessageInRepositoryOrError.value)
+
+    this.webSocket.sendBroadcastToAllListeners(adaptedMessageOrError.value)
 
     return right(adaptedMessageOrError.value)
   }
