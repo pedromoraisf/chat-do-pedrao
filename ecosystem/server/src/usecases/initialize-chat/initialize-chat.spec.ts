@@ -1,5 +1,6 @@
 import { InitializeChat } from "@usecases/initialize-chat"
 import { FakeMessagesRepository } from "@usecases/output-ports/repositories"
+import { FakeWebSocket } from "@usecases/output-ports/communications/web-socket"
 import { LoadMessagesError } from "@usecases/errors"
 import { InfraError } from "@usecases/output-ports/errors"
 import { left } from "@shared/either"
@@ -11,7 +12,8 @@ interface SutTypes {
 
 const makeSut = (): SutTypes => {
   const fakeMessagesRepository = new FakeMessagesRepository();
-  const sut = new InitializeChat(fakeMessagesRepository);
+  const makedFakeWebSocket = new FakeWebSocket();
+  const sut = new InitializeChat(fakeMessagesRepository, makedFakeWebSocket);
 
   return {
     sut,
