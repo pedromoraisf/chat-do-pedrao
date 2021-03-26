@@ -6,18 +6,20 @@ import { InfraError } from "@usecases/output-ports/errors"
 import { left } from "@shared/either"
 
 interface SutTypes {
-  sut: InitializeChat,
+  sut: InitializeChat
   fakeMessagesRepository: FakeMessagesRepository
+  fakeWebSocket: FakeWebSocket
 }
 
 const makeSut = (): SutTypes => {
   const fakeMessagesRepository = new FakeMessagesRepository();
-  const makedFakeWebSocket = new FakeWebSocket();
-  const sut = new InitializeChat(fakeMessagesRepository, makedFakeWebSocket);
+  const fakeWebSocket = new FakeWebSocket();
+  const sut = new InitializeChat(fakeMessagesRepository, fakeWebSocket);
 
   return {
     sut,
-    fakeMessagesRepository
+    fakeMessagesRepository,
+    fakeWebSocket
   }
 }
 
@@ -45,5 +47,15 @@ describe("Use Case Initialize Chat Tests", () => {
 
     expect(testable.isLeft()).toBeTruthy();
     expect(testable.value).toEqual(new LoadMessagesError(new InfraError().message))
+  })
+
+  test("should be call web socket inverted dependency correctly", async () => {
+    const { sut, fakeWebSocket } = makeSut();
+
+    const spyFakeWebSocket = jest.spyOn(fakeWebSocket, "sendBroadcastToAllListeners");
+
+    await sut.init();
+
+    expect(spyFakeWebSocket).toHaveBeenCalledTimes(1)
   })
 })
