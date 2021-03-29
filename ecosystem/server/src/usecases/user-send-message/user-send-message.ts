@@ -36,6 +36,6 @@ export class UserSendMessage {
     })
     if (userOrError.isLeft()) return left(userOrError.value)
 
-    return right(Message.create(userOrError.value, messagePack.content));
+    return right(Message.create(messagePack.id, userOrError.value, messagePack.content));
   }
 }

@@ -10,6 +10,7 @@ interface MessageContent {
 }
 
 export interface MessagePack {
+  id: string;
   user: UserReceive;
   content: MessageContent;
 }

@@ -23,7 +23,7 @@ export class MessagesRepo implements MessagesRepository {
   }
 
   async saveMessage(messageToSave: MessageToSave): Promise<SaveMessageResponse> {
-    const adaptedMessageToSave: SavedMessage = {
+    const adaptedMessageToSave: Omit<SavedMessage, "id"> = {
       user: {
         id: messageToSave.sender.id.value,
         name: messageToSave.sender.name.value,

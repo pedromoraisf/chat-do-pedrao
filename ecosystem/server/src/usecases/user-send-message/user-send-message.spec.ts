@@ -4,6 +4,7 @@ import { FakeMessagesRepository } from "@usecases/output-ports/repositories"
 import { FakeWebSocket } from "@usecases/output-ports/communications/web-socket"
 
 const makeFakeMessagePack = (): MessagePack => ({
+  id: "any_id",
   user: {
     id: "any_id",
     name: "any_name",

@@ -43,7 +43,7 @@ export class InitializeChat {
         password: message.user.password
       });
       if (userOrError.isRight()) {
-        const messageInstance = Message.create(userOrError.value, message)
+        const messageInstance = Message.create(message.id, userOrError.value, message)
         adaptedInterface.push(messageInstance)
       }
     }

@@ -9,6 +9,7 @@ import {
 import { right } from "@shared/either"
 
 export const makeFakeSavedMessage = (): SavedMessage => ({
+  id: "any_id",
   user: makeFakeSavedUser(),
   message: "any_message",
 })

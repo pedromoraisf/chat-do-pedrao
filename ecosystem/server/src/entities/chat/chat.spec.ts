@@ -1,7 +1,7 @@
 import { makeFakeChatWithThreeInitialMessages } from "@entities/chat"
 import { makeFakeUser } from "@entities/user"
 import { Message } from "@entities/message"
-import { Content } from "@entities/message/values"
+import { Content, Id } from "@entities/message/values"
 
 describe("Entitiy Chat Tests", () => {
   test("should be initialize Chat entity, receiving an Message Bucket", () => {
@@ -14,9 +14,10 @@ describe("Entitiy Chat Tests", () => {
   test("should be add unique message in Chat instance", () => {
     const { chat } = makeFakeChatWithThreeInitialMessages();
 
+    const fakeId = new Id("any_id");
     const fakeUser = makeFakeUser();
     const fakeContent = new Content("new_message");
-    const newMessage = new Message(fakeUser, fakeContent)
+    const newMessage = new Message(fakeId, fakeUser, fakeContent)
 
     expect(chat.addMessage(newMessage)).toBeTruthy();
   })

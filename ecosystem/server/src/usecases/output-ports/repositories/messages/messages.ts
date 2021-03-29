@@ -4,11 +4,12 @@ import { InfraError } from "@usecases/output-ports/errors"
 import { Either } from "@shared/either"
 
 export interface SavedMessage {
+  id: string;
   user: SavedUser;
   message: string;
 }
 
-export type MessageToSave = Message
+export type MessageToSave = Omit<Message, "id">
 
 export type RetrievMessagesResponse = Either<InfraError, Array<SavedMessage>>
 export type SaveMessageResponse = Either<InfraError, SavedMessage>

@@ -1,21 +1,24 @@
 import { User } from "@entities/user"
-import { Content } from "@entities/message/values"
+import { Id, Content } from "@entities/message/values"
 
 interface MessageContent {
   message: string;
 }
 
 export class Message {
+  public readonly id: Id;
   public readonly sender: User;
   public readonly content: Content;
 
-  constructor(sender: User, content: Content) {
+  constructor(id: Id, sender: User, content: Content) {
+    this.id = id;
     this.sender = sender;
     this.content = content;
   }
 
-  static create(sender: User, messageContent: MessageContent): Message {
+  static create(messageId: string, sender: User, messageContent: MessageContent): Message {
+    const id = new Id(messageId)
     const content = new Content(messageContent.message)
-    return new Message(sender, content)
+    return new Message(id, sender, content)
   }
 }
