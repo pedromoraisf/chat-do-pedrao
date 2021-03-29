@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import { SocketIoEvents } from "@external/socket.io"
-import { makeFakeChatWithThreeInitialMessages } from "@entities/chat"
+import { makeFakeGlobalChatWithThreeInitialMessages } from "@entities/chat"
 import { Server, Socket } from "socket.io";
 const { createServer } = require("http");
 const Client = require("socket.io-client");
@@ -38,7 +38,7 @@ describe("initializeChatOnTheListener Tests", () => {
   test("should be send complete chat to connected client", (done) => {
     const { sut } = makeSut(serverSocket);
 
-    const { chat } = makeFakeChatWithThreeInitialMessages();
+    const { chat } = makeFakeGlobalChatWithThreeInitialMessages();
     sut.initializeChatOnTheListener(chat)
 
     clientSocket.on("initialize-chat", payload => {

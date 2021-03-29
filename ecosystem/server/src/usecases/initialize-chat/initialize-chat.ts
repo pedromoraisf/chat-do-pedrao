@@ -15,14 +15,14 @@ export class InitializeChat {
     this.webSocket = webSocket
   }
 
-  async init(): Promise<Either<LoadMessagesError, Chat>> {
+  async init(chatId?: string): Promise<Either<LoadMessagesError, Chat>> {
     const savedInRepositoryMessages = await this.messagesRepository.retrievMessages();
     if (savedInRepositoryMessages.isLeft()) {
       return left(new LoadMessagesError(savedInRepositoryMessages.value.message))
     }
 
     const adaptedMessages = this.adapterRepoMessagesInEntityMessages(savedInRepositoryMessages.value);
-    const chat = Chat.bootstrap({
+    const chat = Chat.bootstrap(chatId || "", {
       messages: adaptedMessages
     })
 
