@@ -1,4 +1,4 @@
-import { InitializeChat } from "@usecases/initialize-chat"
+import { InitializeGlobalChat } from "@usecases/initialize-global-chat"
 import { FakeMessagesRepository } from "@usecases/output-ports/repositories"
 import { FakeWebSocket } from "@usecases/output-ports/communications/web-socket"
 import { LoadMessagesError } from "@usecases/errors"
@@ -6,7 +6,7 @@ import { InfraError } from "@usecases/output-ports/errors"
 import { left } from "@shared/either"
 
 interface SutTypes {
-  sut: InitializeChat
+  sut: InitializeGlobalChat
   fakeMessagesRepository: FakeMessagesRepository
   fakeWebSocket: FakeWebSocket
 }
@@ -14,7 +14,7 @@ interface SutTypes {
 const makeSut = (): SutTypes => {
   const fakeMessagesRepository = new FakeMessagesRepository();
   const fakeWebSocket = new FakeWebSocket();
-  const sut = new InitializeChat(fakeMessagesRepository, fakeWebSocket);
+  const sut = new InitializeGlobalChat(fakeMessagesRepository, fakeWebSocket);
 
   return {
     sut,
@@ -23,7 +23,7 @@ const makeSut = (): SutTypes => {
   }
 }
 
-describe("Use Case Initialize Chat Tests", () => {
+describe("Use Case Initializ Global Chat Tests", () => {
   test("should be call adapter method correctly", async () => {
     const { sut, fakeMessagesRepository } = makeSut();
 

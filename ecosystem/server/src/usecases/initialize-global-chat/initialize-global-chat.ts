@@ -6,7 +6,7 @@ import { WebSocket } from "@usecases/output-ports/communications/web-socket"
 import { LoadMessagesError } from "@usecases/errors"
 import { Either, left, right } from "@shared/either"
 
-export class InitializeChat {
+export class InitializeGlobalChat {
   private readonly messagesRepository: MessagesRepository;
   private readonly webSocket: WebSocket;
 
