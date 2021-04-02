@@ -20,6 +20,7 @@ module.exports = {
           "@usecases": "./src/usecases",
           "@shared": "./src/shared",
           "@external": "./src/external",
+          "@presentation": "./src/presentation",
           "@main": "./src/main",
         },
       },
