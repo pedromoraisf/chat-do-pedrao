@@ -1,1 +1,1 @@
-export * from "@external/mongodb/messages/messages-repository"
+export * from '@external/mongodb/messages/messages-repository';

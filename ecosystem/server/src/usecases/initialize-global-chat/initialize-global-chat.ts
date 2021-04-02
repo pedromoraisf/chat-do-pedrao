@@ -1,40 +1,35 @@
-import { User } from "@entities/user"
-import { Chat } from "@entities/chat"
-import { Message } from "@entities/message"
-import { MessagesRepository, SavedMessage } from "@usecases/output-ports/repositories"
-import { WebSocket } from "@usecases/output-ports/communications/web-socket"
-import { LoadMessagesError } from "@usecases/errors"
-import { Either, left, right } from "@shared/either"
+import { User } from '@entities/user';
+import { Chat } from '@entities/chat';
+import { Message } from '@entities/message';
+import { MessagesRepository, SavedMessage } from '@usecases/output-ports/repositories';
+import { LoadMessagesError } from '@usecases/errors';
+import { Either, left, right } from '@shared/either';
 
 export class InitializeGlobalChat {
   private readonly messagesRepository: MessagesRepository;
-  private readonly webSocket: WebSocket;
 
-  constructor(messagesRepository: MessagesRepository, webSocket: WebSocket) {
-    this.messagesRepository = messagesRepository
-    this.webSocket = webSocket
+  constructor(messagesRepository: MessagesRepository) {
+    this.messagesRepository = messagesRepository;
   }
 
   async init(chatId?: string): Promise<Either<LoadMessagesError, Chat>> {
     const savedInRepositoryMessages = await this.messagesRepository.retrievMessages();
     if (savedInRepositoryMessages.isLeft()) {
-      return left(new LoadMessagesError(savedInRepositoryMessages.value.message))
+      return left(new LoadMessagesError(savedInRepositoryMessages.value.message));
     }
 
     const adaptedMessages = this.adapterRepoMessagesInEntityMessages(savedInRepositoryMessages.value);
-    const chat = Chat.bootstrap(chatId || "", {
+    const chat = Chat.bootstrap(chatId || '', {
       messages: adaptedMessages
-    })
+    });
 
-    this.webSocket.initializeChatOnTheListener(chat);
-
-    return right(chat)
+    return right(chat);
   }
 
   adapterRepoMessagesInEntityMessages(repoMessages: Array<SavedMessage>): Array<Message> {
     const adaptedInterface: Message[] = [];
 
-    for (let i = 0; i < repoMessages.length; i++) {
+    for (let i = 0; i < repoMessages.length; i += 1) {
       const message = repoMessages[i];
       const userOrError = User.create({
         id: message.user.id,
@@ -43,8 +38,8 @@ export class InitializeGlobalChat {
         password: message.user.password
       });
       if (userOrError.isRight()) {
-        const messageInstance = Message.create(message.id, userOrError.value, message)
-        adaptedInterface.push(messageInstance)
+        const messageInstance = Message.create(message.id, userOrError.value, message);
+        adaptedInterface.push(messageInstance);
       }
     }
 

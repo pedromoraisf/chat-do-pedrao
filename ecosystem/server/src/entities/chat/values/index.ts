@@ -1,1 +1,1 @@
-export * from "@entities/chat/values/id"
+export * from '@entities/chat/values/id';

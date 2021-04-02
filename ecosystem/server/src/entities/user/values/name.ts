@@ -1,5 +1,5 @@
-import { Either, right, left } from "@shared/either"
-import { InvalidNameError } from "@entities/user/errors"
+import { Either, right, left } from '@shared/either';
+import { InvalidNameError } from '@entities/user/errors';
 
 export class Name {
   private readonly name: string;
@@ -9,19 +9,18 @@ export class Name {
   }
 
   get value(): string {
-    return this.name
+    return this.name;
   }
 
   static create(name: string): Either<InvalidNameError, Name> {
     const cleanedName = Name.clean(name);
-    if (!Name.verifyLength(cleanedName))
-      return left(new InvalidNameError(name))
+    if (!Name.verifyLength(cleanedName)) return left(new InvalidNameError(name));
 
-    return right(new Name(cleanedName))
+    return right(new Name(cleanedName));
   }
 
   static clean(name: string): string {
-    if (!(name && typeof name === "string")) return "";
+    if (!(name && typeof name === 'string')) return '';
 
     return name.trim();
   }

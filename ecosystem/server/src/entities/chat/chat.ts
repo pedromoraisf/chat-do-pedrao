@@ -1,13 +1,14 @@
-import { Id } from "@entities/chat/values"
-import { Message } from "@entities/message"
+import { Id } from '@entities/chat/values';
+import { Message } from '@entities/message';
 
 interface MessageBucket {
-  messages: Array<Message>
+  messages: Array<Message>;
 }
 
 export class Chat {
-  public id: Id
-  public messages: Array<Message>
+  public id: Id;
+
+  public messages: Array<Message>;
 
   constructor(id: Id, message?: Array<Message>) {
     this.id = id;
@@ -15,21 +16,21 @@ export class Chat {
   }
 
   static bootstrap(chatId: string, messageBucket: MessageBucket): Chat {
-    const proxiateChatId = this.proxiateChatId(chatId)
+    const proxiateChatId = this.proxiateChatId(chatId);
     const id = new Id(proxiateChatId);
-    return new Chat(id, messageBucket.messages)
+    return new Chat(id, messageBucket.messages);
   }
 
   static proxiateChatId(chatId?: string): string {
-    return chatId || this.initChatGlobal()
+    return chatId || this.initChatGlobal();
   }
 
   static initChatGlobal(): string {
-    return "global_chat"
+    return 'global_chat';
   }
 
   addMessage(message: Message): boolean {
-    this.messages.push(message)
-    return !!this.messages.includes(message)
+    this.messages.push(message);
+    return !!this.messages.includes(message);
   }
 }

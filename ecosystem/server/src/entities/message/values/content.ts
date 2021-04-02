@@ -6,16 +6,16 @@ export class Content {
   }
 
   get value(): string {
-    return this.content
+    return this.content;
   }
 
   static create(content: string): Content {
     const cleanedContent = Content.clean(content);
-    return new Content(cleanedContent)
+    return new Content(cleanedContent);
   }
 
   static clean(content: string): string {
-    if (!(content && typeof content === "string")) return "";
+    if (!(content && typeof content === 'string')) return '';
 
     return content.trim();
   }

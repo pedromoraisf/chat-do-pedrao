@@ -1,5 +1,5 @@
-import { User } from "@entities/user"
-import { Id, Content } from "@entities/message/values"
+import { User } from '@entities/user';
+import { Id, Content } from '@entities/message/values';
 
 interface MessageContent {
   message: string;
@@ -7,7 +7,9 @@ interface MessageContent {
 
 export class Message {
   public readonly id: Id;
+
   public readonly sender: User;
+
   public readonly content: Content;
 
   constructor(id: Id, sender: User, content: Content) {
@@ -17,8 +19,8 @@ export class Message {
   }
 
   static create(messageId: string, sender: User, messageContent: MessageContent): Message {
-    const id = new Id(messageId)
-    const content = new Content(messageContent.message)
-    return new Message(id, sender, content)
+    const id = new Id(messageId);
+    const content = new Content(messageContent.message);
+    return new Message(id, sender, content);
   }
 }

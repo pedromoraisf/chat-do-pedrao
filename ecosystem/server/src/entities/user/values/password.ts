@@ -1,5 +1,5 @@
-import { Either, right, left } from "@shared/either"
-import { InvalidPasswordError } from "@entities/user/errors"
+import { Either, right, left } from '@shared/either';
+import { InvalidPasswordError } from '@entities/user/errors';
 
 export class Password {
   private readonly password: string;
@@ -9,19 +9,18 @@ export class Password {
   }
 
   get value(): string {
-    return this.password
+    return this.password;
   }
 
   static create(password: string): Either<InvalidPasswordError, Password> {
-    if (!Password.verifyLength(password))
-      return left(new InvalidPasswordError(password))
+    if (!Password.verifyLength(password)) return left(new InvalidPasswordError(password));
 
-    return right(new Password(password))
+    return right(new Password(password));
   }
 
   static verifyLength(password: string): boolean {
     const MIN_LEN = 5;
 
-    return !!(password && password.length > MIN_LEN)
+    return !!(password && password.length > MIN_LEN);
   }
 }

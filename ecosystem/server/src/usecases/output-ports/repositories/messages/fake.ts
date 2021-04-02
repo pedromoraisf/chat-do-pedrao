@@ -5,24 +5,24 @@ import {
   RetrievMessagesResponse,
   MessageToSave,
   SaveMessageResponse
-} from "@usecases/output-ports/repositories"
-import { right } from "@shared/either"
+} from '@usecases/output-ports/repositories';
+import { right } from '@shared/either';
 
 export const makeFakeSavedMessage = (): SavedMessage => ({
-  id: "any_id",
+  id: 'any_id',
   user: makeFakeSavedUser(),
-  message: "any_message",
-})
+  message: 'any_message'
+});
 
 export class FakeMessagesRepository implements MessagesRepository {
   async retrievMessages(): Promise<RetrievMessagesResponse> {
-    const res = [makeFakeSavedMessage()]
-    return new Promise(resolve => resolve(right(res)))
+    const res = [makeFakeSavedMessage()];
+    return new Promise((resolve) => resolve(right(res)));
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async saveMessage(messageToSave: MessageToSave): Promise<SaveMessageResponse> {
     const res = makeFakeSavedMessage();
-    return new Promise(resolve => resolve(right(res)));
+    return new Promise((resolve) => resolve(right(res)));
   }
 }

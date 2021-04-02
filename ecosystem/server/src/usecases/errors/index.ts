@@ -1,1 +1,1 @@
-export * from "@usecases/errors/load-messages"
+export * from '@usecases/errors/load-messages';

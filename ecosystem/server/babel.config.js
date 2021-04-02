@@ -2,30 +2,30 @@
 module.exports = {
   presets: [
     [
-      "@babel/preset-env",
+      '@babel/preset-env',
       {
         targets: {
-          node: "12",
-        },
-      },
+          node: '12'
+        }
+      }
     ],
-    "@babel/preset-typescript",
+    '@babel/preset-typescript'
   ],
   plugins: [
     [
-      "module-resolver",
+      'module-resolver',
       {
         alias: {
-          "@entities": "./src/entities",
-          "@usecases": "./src/usecases",
-          "@shared": "./src/shared",
-          "@external": "./src/external",
-          "@presentation": "./src/presentation",
-          "@main": "./src/main",
-        },
-      },
+          '@entities': './src/entities',
+          '@usecases': './src/usecases',
+          '@shared': './src/shared',
+          '@external': './src/external',
+          '@presentation': './src/presentation',
+          '@main': './src/main'
+        }
+      }
     ],
-    ["add-module-exports"],
+    ['add-module-exports']
   ],
-  ignore: ["**/**/*.spec.ts", "**/**/*.test.ts"],
+  ignore: ['**/**/*.spec.ts', '**/**/*.test.ts']
 };

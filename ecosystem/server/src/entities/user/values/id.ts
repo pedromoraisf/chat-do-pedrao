@@ -6,10 +6,10 @@ export class Id {
   }
 
   get value(): string {
-    return this.id
+    return this.id;
   }
 
   static create(id: string): Id {
-    return new Id(id)
+    return new Id(id);
   }
 }
