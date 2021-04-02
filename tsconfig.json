@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "incremental": true,
+    "outDir": "./dist",
+    "baseUrl": ".",
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "target": "es5",
+    "sourceMap": false,
+    "lib": ["esnext"],
+    "esModuleInterop": true,
+    "alwaysStrict": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "resolveJsonModule": true,
+    "paths": {
+      "@monorepo/*": ["ecosystem/*/src/index.ts"]
+    }
+  },
+  "references": [
+    {
+      "path": "ecosystem/pwa"
+    },
+    {
+      "path": "ecosystem/server"
+    }
+  ],
+  "exclude": ["node_modules", "dist", "*.d.ts"]
+}

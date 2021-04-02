@@ -1,12 +1,12 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "target": "es5",
-    "declaration": true,
-    "outDir": "./dist",
+    "baseUrl": ".",
+    "moduleResolution": "node",
     "module": "commonjs",
-    "esModuleInterop": true,
+    "rootDir": ".",
+    "outDir": "./dist",
     "allowJs": true,
-    "strictNullChecks": true, 
     "paths": {
       "@entities/*": ["./src/entities/*"],
       "@usecases/*": ["./src/usecases/*"],
@@ -16,6 +16,7 @@
       "@main/*": ["./src/main/*"],
     }
   }, 
+  "include": ["src/**/*"],
   "exclude": [
     "jest.*",
     "jest-*",

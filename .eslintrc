@@ -4,7 +4,7 @@
   "plugins": ["@typescript-eslint", "prettier"],
   "extends": ["airbnb-typescript/base", "plugin:prettier/recommended"],
   "parserOptions": {
-    "project": ["./tsconfig.json", "./ecosystem/server/tsconfig.json"]
+    "project": "./tsconfig.json"
   },
   "rules": {
     "class-methods-use-this": "off",
