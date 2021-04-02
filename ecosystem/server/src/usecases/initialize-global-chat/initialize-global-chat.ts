@@ -19,7 +19,8 @@ export class InitializeGlobalChat {
     }
 
     const adaptedMessages = this.adapterRepoMessagesInEntityMessages(savedInRepositoryMessages.value);
-    const chat = Chat.bootstrap(chatId || '', {
+    const ADAPTED_CHAT_ID = chatId || '';
+    const chat = Chat.bootstrap(ADAPTED_CHAT_ID, {
       messages: adaptedMessages
     });
 
