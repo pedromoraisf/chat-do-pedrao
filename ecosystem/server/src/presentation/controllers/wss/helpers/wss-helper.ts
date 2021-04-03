@@ -1,4 +1,5 @@
 import { PayloadReturn } from '@presentation/controllers/wss/protocols';
+import { ServerError } from '@presentation/errors';
 
 export const badRequest = (error: Error): PayloadReturn => ({
   statusCode: 400,
@@ -7,7 +8,7 @@ export const badRequest = (error: Error): PayloadReturn => ({
 
 export const serverError = (error: Error): PayloadReturn => ({
   statusCode: 500,
-  body: error.message
+  body: new ServerError(error.stack).message
 });
 
 export const ok = (data: any): PayloadReturn => ({
