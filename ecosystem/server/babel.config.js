@@ -21,7 +21,8 @@ module.exports = {
           '@shared': './src/shared',
           '@external': './src/external',
           '@presentation': './src/presentation',
-          '@main': './src/main'
+          '@main': './src/main',
+          '@config': './src/config'
         }
       }
     ],

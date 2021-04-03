@@ -19,6 +19,7 @@ module.exports = {
     '@shared/(.*)': '<rootDir>/src/shared/$1',
     '@external/(.*)': '<rootDir>/src/external/$1',
     '@presentation/(.*)': '<rootDir>/src/presentation/$1',
-    '@main/(.*)': '<rootDir>/src/main/$1'
+    '@main/(.*)': '<rootDir>/src/main/$1',
+    '@config/(.*)': '<rootDir>/src/config/$1'
   }
 };

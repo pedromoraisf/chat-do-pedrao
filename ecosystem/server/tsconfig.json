@@ -14,6 +14,7 @@
       "@external/*": ["./src/external/*"],
       "@presentation/*": ["./src/presentation/*"],
       "@main/*": ["./src/main/*"],
+      "@config/*": ["./src/config/*"],
     }
   }, 
   "include": ["./src/**/*", "./src/presentation/controllers/wss/protocols/*.ts"],
