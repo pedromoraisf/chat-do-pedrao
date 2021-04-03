@@ -13,18 +13,7 @@
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
-    "resolveJsonModule": true,
-    "paths": {
-      "@monorepo/*": ["ecosystem/*/src/index.ts"]
-    }
+    "resolveJsonModule": true
   },
-  "references": [
-    {
-      "path": "ecosystem/pwa"
-    },
-    {
-      "path": "ecosystem/server"
-    }
-  ],
-  "exclude": ["node_modules", "dist", "*.d.ts"]
+  "exclude": ["node_modules", "dist"]
 }

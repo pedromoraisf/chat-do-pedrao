@@ -16,7 +16,7 @@
       "@main/*": ["./src/main/*"],
     }
   }, 
-  "include": ["src/**/*"],
+  "include": ["./src/**/*", "./src/presentation/controllers/wss/protocols/*.ts"],
   "exclude": [
     "jest.*",
     "jest-*",
