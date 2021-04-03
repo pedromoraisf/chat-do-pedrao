@@ -1,6 +1,6 @@
 import { Controller, PayloadReturn } from '@presentation/controllers/wss/protocols';
 import { InitializeGlobalChat } from '@usecases/initialize-global-chat';
-import { serverError, ok } from '@presentation/controllers/wss/helpers/wss-helper';
+import { serverError, ok } from '@presentation/controllers/wss/helpers/responses';
 
 export class UserEntryInConnectionController implements Controller {
   protected readonly initializeGlobalChatUseCase: InitializeGlobalChat;

@@ -1,6 +1,6 @@
 import { UserSendMessage, MessagePack } from '@usecases/user-send-message';
 import { Controller, PayloadReceive, PayloadReturn } from '@presentation/controllers/wss/protocols';
-import { badRequest, ok } from '@presentation/controllers/wss/helpers/wss-helper';
+import { badRequest, ok } from '@presentation/controllers/wss/helpers/responses';
 import { MissingParamError } from '@presentation/errors';
 import { mapError } from '@presentation/controllers/wss/helpers/error-mapper';
 

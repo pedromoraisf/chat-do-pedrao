@@ -1,4 +1,4 @@
-import { badRequest, serverError } from '@presentation/controllers/wss/helpers/wss-helper';
+import { badRequest, serverError } from '@presentation/controllers/wss/helpers/responses';
 import { ARCHITECTURE_DISCLAIMER } from '@config/architecture-disclaimer';
 
 const errorMapper = {
