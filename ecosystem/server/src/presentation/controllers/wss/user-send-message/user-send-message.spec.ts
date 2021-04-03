@@ -49,6 +49,17 @@ describe('User Send Message Controller Tests', () => {
     expect(spyUseCase).toHaveBeenCalledWith(makedFakePayloadReceive);
   });
 
+  test('should be returns badRequest if payload is not provided correctly', async () => {
+    const { sut } = makeSut();
+
+    const makedFakePayloadReceive = makeFakePayloadReceive();
+    makedFakePayloadReceive.id = '';
+    const testable = await sut.handle(makedFakePayloadReceive);
+
+    expect(testable.statusCode).toBe(400);
+    expect(testable.body).toBe('Missing param: Id is not provided');
+  });
+
   test('should be catch if use cases returns left in Either', async () => {
     const { sut, makeFakeMessagesRepository } = makeSut();
     jest.spyOn(makeFakeMessagesRepository, 'saveMessage').mockImplementationOnce(async () => {
