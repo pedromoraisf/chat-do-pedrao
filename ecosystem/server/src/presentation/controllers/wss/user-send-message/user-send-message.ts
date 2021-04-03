@@ -7,6 +7,19 @@ import { mapError } from '@presentation/controllers/wss/helpers/error-mapper';
 export class UserSendMessageController implements Controller {
   protected readonly userSendMessageUseCase: UserSendMessage;
 
+  protected readonly payloadReceiveTypes: MessagePack = {
+    id: '',
+    user: {
+      id: '',
+      name: '',
+      username: '',
+      password: ''
+    },
+    content: {
+      message: ''
+    }
+  };
+
   constructor(userSendMessageUseCase: UserSendMessage) {
     this.userSendMessageUseCase = userSendMessageUseCase;
   }
@@ -14,7 +27,7 @@ export class UserSendMessageController implements Controller {
   async handle(payloadReceive: PayloadReceive): Promise<PayloadReturn> {
     const normalizedPayloadReceive = this.normalizePayloadReceive(payloadReceive);
     if (normalizedPayloadReceive.id === '' || normalizedPayloadReceive.user.id === '')
-      return badRequest(new MissingParamError(''));
+      return badRequest(new MissingParamError('Id is not provided'));
 
     try {
       const userMessage = await this.userSendMessageUseCase.send(normalizedPayloadReceive);
@@ -26,18 +39,6 @@ export class UserSendMessageController implements Controller {
   }
 
   protected normalizePayloadReceive(payloadReceive: PayloadReceive): MessagePack {
-    const payloadReceiveTypes: MessagePack = {
-      id: '',
-      user: {
-        id: '',
-        name: '',
-        username: '',
-        password: ''
-      },
-      content: {
-        message: ''
-      }
-    };
-    return { ...payloadReceiveTypes, ...payloadReceive };
+    return { ...this.payloadReceiveTypes, ...payloadReceive };
   }
 }
