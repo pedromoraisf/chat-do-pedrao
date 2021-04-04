@@ -1,6 +1,7 @@
 import { Controller, PayloadReturn } from '@presentation/controllers/wss/protocols';
 import { InitializeGlobalChat } from '@usecases/initialize-global-chat';
-import { serverError, ok } from '@presentation/controllers/wss/helpers/responses';
+import { ok } from '@presentation/controllers/wss/helpers/responses';
+import { mapError } from '@presentation/controllers/wss/helpers/error-mapper';
 
 export class UserEntryInConnectionController implements Controller {
   protected readonly initializeGlobalChatUseCase: InitializeGlobalChat;
@@ -13,8 +14,9 @@ export class UserEntryInConnectionController implements Controller {
     try {
       const initGlobalChat = await this.initializeGlobalChatUseCase.init();
       return ok(initGlobalChat);
-    } catch (error) {
-      return serverError(error);
+    } catch (e) {
+      const error = e.value;
+      return mapError(error.name)(error);
     }
   }
 }

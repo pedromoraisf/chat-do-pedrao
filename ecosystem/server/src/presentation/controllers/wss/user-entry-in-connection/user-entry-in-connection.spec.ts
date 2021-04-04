@@ -1,6 +1,8 @@
 import { UserEntryInConnectionController } from '@presentation/controllers/wss/user-entry-in-connection';
 import { InitializeGlobalChat } from '@usecases/initialize-global-chat';
 import { FakeMessagesRepository } from '@usecases/output-ports/repositories';
+import { left } from '@shared/either';
+import { InfraError } from '@usecases/output-ports/errors';
 
 const makeInitializeGlobalChat = () => {
   const fakeMessagesRepository = new FakeMessagesRepository();
@@ -28,10 +30,11 @@ describe('User Entry In Connection Controller Tests', () => {
     expect(testable?.statusCode).toBe(200);
   });
 
-  test('should be return ok request if already operations have been succeded', async () => {
+  test('should be return an error if left return has been encountred', async () => {
     const { sut, makedUseCase } = makeSut();
     jest.spyOn(makedUseCase, 'init').mockImplementationOnce(async () => {
-      return new Promise((resolve, reject) => reject(new Error('any_error')));
+      const response = left(new InfraError());
+      return new Promise((resolve, reject) => reject(response));
     });
     const testable = await sut.handle();
     expect(testable?.statusCode).toBe(500);
