@@ -10,5 +10,8 @@ export const ARCHITECTURE_DISCLAIMER = {
   },
   EXTERNAL: {
     errorPattern: 'ExternalError'
+  },
+  MAIN: {
+    errorPattern: 'MainError'
   }
 };
