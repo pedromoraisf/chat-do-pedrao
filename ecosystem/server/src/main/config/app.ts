@@ -1,9 +1,9 @@
 import express from 'express';
 import setupMiddlewares from '@main/config/middlewares';
-import setupRoutes from '@main/config/routes';
+import setupWebSocket from '@main/config/web-socket';
 
 const app = express();
 setupMiddlewares(app);
-setupRoutes(app);
+setupWebSocket(app);
 
 export default app;
