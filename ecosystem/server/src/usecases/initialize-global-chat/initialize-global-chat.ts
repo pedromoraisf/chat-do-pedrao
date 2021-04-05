@@ -12,15 +12,14 @@ export class InitializeGlobalChat {
     this.messagesRepository = messagesRepository;
   }
 
-  async init(chatId?: string): Promise<Either<LoadMessagesError, Chat>> {
+  async init(chatId = ''): Promise<Either<LoadMessagesError, Chat>> {
     const savedInRepositoryMessages = await this.messagesRepository.retrievMessages();
     if (savedInRepositoryMessages.isLeft()) {
       return left(new LoadMessagesError(savedInRepositoryMessages.value.message));
     }
 
     const adaptedMessages = this.adapterRepoMessagesInEntityMessages(savedInRepositoryMessages.value);
-    const ADAPTED_CHAT_ID = chatId || '';
-    const chat = Chat.bootstrap(ADAPTED_CHAT_ID, {
+    const chat = Chat.bootstrap(chatId, {
       messages: adaptedMessages
     });
 
