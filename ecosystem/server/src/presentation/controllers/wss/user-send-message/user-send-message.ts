@@ -31,6 +31,7 @@ export class UserSendMessageController implements Controller {
 
     try {
       const userMessage = await this.userSendMessageUseCase.send(normalizedPayloadReceive);
+      if (userMessage.isLeft()) return mapError(userMessage.value.name)(userMessage.value);
       return ok(userMessage.value);
     } catch (e) {
       const error = e.value;

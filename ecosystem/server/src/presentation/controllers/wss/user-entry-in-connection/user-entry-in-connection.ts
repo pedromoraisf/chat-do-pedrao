@@ -13,6 +13,7 @@ export class UserEntryInConnectionController implements Controller {
   async handle(): Promise<PayloadReturn> {
     try {
       const initGlobalChat = await this.initializeGlobalChatUseCase.init();
+      if (initGlobalChat.isLeft()) return mapError(initGlobalChat.value.name)(initGlobalChat.value);
       return ok(initGlobalChat);
     } catch (e) {
       const error = e.value;
