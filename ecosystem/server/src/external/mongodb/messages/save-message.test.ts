@@ -51,6 +51,6 @@ describe('saveMessage Tests', () => {
     const testable = await sut.retrievMessages();
 
     expect(testable.isLeft()).toBeTruthy();
-    expect(testable.value).toEqual(new InfraError());
+    expect(testable.value).toEqual(new InfraError('any_external_error'));
   });
 });
