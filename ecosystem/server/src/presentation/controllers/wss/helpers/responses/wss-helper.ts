@@ -13,5 +13,5 @@ export const serverError = (error: Error): PayloadReturn => ({
 
 export const ok = (data: any): PayloadReturn => ({
   statusCode: 200,
-  body: data.value
+  body: data
 });
