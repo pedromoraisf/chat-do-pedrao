@@ -17,8 +17,8 @@ export class MessagesRepo implements MessagesRepository {
       const messagesCollection = await MongoHelper.getCollection(this.COLLECTION_NAME);
       const result = await messagesCollection.find().toArray();
       return right(result);
-    } catch {
-      return left(new InfraError());
+    } catch (e) {
+      return left(new InfraError(e.message));
     }
   }
 
@@ -37,8 +37,8 @@ export class MessagesRepo implements MessagesRepository {
       const messagesCollection = await MongoHelper.getCollection(this.COLLECTION_NAME);
       const result = await messagesCollection.insertOne(adaptedMessageToSave);
       return right(result.ops[0]);
-    } catch {
-      return left(new InfraError());
+    } catch (e) {
+      return left(new InfraError(e.message));
     }
   }
 }
