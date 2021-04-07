@@ -23,10 +23,28 @@ Monorepo criado para aplicabilidade de princípios arquiteturais voltados para e
 - Typescript
 - Node.js
 - Socket.io
+- MongoDB
 - Jest
-- Vue.js 3 (👨🏽‍💻)
+- Docker
+- Github Actions (👨🏽‍💻...)
+- Vue.js 3 (👨🏽‍💻...)
 
 Com a finalização das stacks, o projeto irá pro ar para trocarmos aquela ideia usando esse próprio chat ✌🏽.
+
+## Como instalar?
+### Pelo Docker 🐳
+- <code>$ docker-compose up --build</code>
+
+### Normalmente
+1. Para instalar as dependências
+<br>
+<code>$ npm install.</code>
+
+2. Pós dependências instaladas, subir um MongoDB. Veja como instalar [clicando aqui](https://docs.mongodb.com/manual/installation/)
+
+3. Pós instalação, crie na raiz da stack do server (./ecosystem/server) um arquivo <code>.env</code> contendo a seguinte variável de ambiente:
+<br>
+<code>MONGO_URL=<sua_variavel_de_conexao_mongo></code>
 
 ## Gostaria de conversar sobre esses estudos?
 Caso tenha interesse em devanear sobre esse tipo de estudo, seria um enorme prazer pra mim conversar contigo sobre. Me ache no:
