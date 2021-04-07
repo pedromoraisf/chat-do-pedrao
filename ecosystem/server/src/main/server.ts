@@ -1,7 +1,11 @@
 /* eslint-disable no-console */
+import dotenv from 'dotenv';
+
 import '../lib/module-alias';
 import { MongoHelper } from '@external/mongodb/helpers/mongo-helper';
 import env from '@main/config/env';
+
+dotenv.config();
 
 MongoHelper.connect(env.mongoUrl)
   .then(async () => {
