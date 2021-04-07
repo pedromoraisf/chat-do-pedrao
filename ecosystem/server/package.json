@@ -9,7 +9,7 @@
     "ecosystem/web"
   ],
   "scripts": {
-    "dev": "sucrase-node ./src/main/server.ts",
+    "dev": "NODE_ENV=development sucrase-node ./src/main/server.ts",
     "lint": "eslint ./src --ext .ts",
     "lint:fix": "npm run lint -- --fix",
     "test": "NODE_ENV=test jest --passWithNoTests --runInBand",
@@ -46,6 +46,7 @@
     "ts-jest": "^26.4.4"
   },
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "module-alias": "^2.2.2",
     "mongodb": "^3.6.5",
