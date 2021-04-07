@@ -31,6 +31,10 @@ Monorepo criado para aplicabilidade de princípios arquiteturais voltados para e
 
 Com a finalização das stacks, o projeto irá pro ar para trocarmos aquela ideia usando esse próprio chat ✌🏽.
 
+## Desenvolvimento
+- ✅ Socker Server
+- 👨🏽‍💻 PWA com Vue.js 3
+
 ## Como instalar?
 ### Pelo Docker 🐳
 - <code>$ docker-compose up --build</code>
