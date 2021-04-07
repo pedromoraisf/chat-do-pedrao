@@ -1,18 +1,21 @@
 version: '3.1'
 
 services:
-  server:
-    container_name: chat-do-pedrao-server
-    build: ./ecosystem/server/
-    command: npm run dev
-    ports:
-      - '5050:5050'
-    volumes:
-      - ./ecosystem/server/:/usr/app
-
   mongo:
     image: mongo
     restart: always
     environment:
-      MONGO_INITDB_ROOT_USERNAME: chat-do-pedrao
-      MONGO_INITDB_ROOT_PASSWORD: chat-do-pedrao
+      MONGO_INITDB_DATABASE: chat
+    ports:
+      - 27017:27017
+
+  server:
+    container_name: chat_do_pedrao_server
+    build: ./ecosystem/server/
+    command: npm run dev
+    depends_on:
+      - 'mongo'
+    ports:
+      - '5050:5050'
+    volumes:
+      - ./ecosystem/server/:/usr/app
