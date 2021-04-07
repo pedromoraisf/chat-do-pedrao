@@ -36,9 +36,7 @@ Com a finalização das stacks, o projeto irá pro ar para trocarmos aquela idei
 - <code>$ docker-compose up --build</code>
 
 ### Normalmente
-1. Para instalar as dependências
-<br>
-<code>$ npm install.</code>
+1. Para instalar as dependências: <code>$ npm install.</code>
 
 2. Pós dependências instaladas, subir um MongoDB. Veja como instalar [clicando aqui](https://docs.mongodb.com/manual/installation/)
 
