@@ -16,13 +16,13 @@ export const makeFakeSavedMessage = (): SavedMessage => ({
 
 export class FakeMessagesRepository implements MessagesRepository {
   async retrievMessages(): Promise<RetrievMessagesResponse> {
-    const res = [makeFakeSavedMessage()];
-    return new Promise((resolve) => resolve(right(res)));
+    const response = [makeFakeSavedMessage()];
+    return new Promise((resolve) => resolve(right(response)));
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async saveMessage(messageToSave: MessageToSave): Promise<SaveMessageResponse> {
-    const res = makeFakeSavedMessage();
-    return new Promise((resolve) => resolve(right(res)));
+    const response = makeFakeSavedMessage();
+    return new Promise((resolve) => resolve(right(response)));
   }
 }
