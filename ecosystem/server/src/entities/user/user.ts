@@ -36,4 +36,13 @@ export class User {
 
     return right(new User(id, name, username, password));
   }
+
+  public getClean() {
+    return {
+      id: this.id?.value,
+      name: this.name?.value,
+      username: this.username?.value,
+      password: this.password?.value
+    };
+  }
 }

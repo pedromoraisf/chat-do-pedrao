@@ -58,4 +58,17 @@ describe('Entitiy User Tests', () => {
       expect(testable.value).toEqual(new InvalidPasswordError(userDataWithWrongPassword.password));
     });
   });
+
+  test('should be returns adapted data in getClean', () => {
+    const { sut } = makeSut();
+
+    const makedSut = sut.create(makeUserData());
+    const testable = <User>makedSut.value;
+    expect(testable.getClean()).toEqual({
+      id: 'any_id',
+      name: 'any_name',
+      username: 'any_username',
+      password: 'any_password'
+    });
+  });
 });
