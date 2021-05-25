@@ -23,4 +23,14 @@ export class Message {
     const content = new Content(messageContent.message);
     return new Message(id, sender, content);
   }
+
+  public getClean() {
+    return {
+      id: this.id?.value,
+      sender: this.sender.getClean(),
+      content: {
+        message: this.content?.value
+      }
+    };
+  }
 }

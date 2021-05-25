@@ -27,4 +27,28 @@ describe('Entitiy Message Tests', () => {
     });
     expect(testable.content.value).toEqual(fakeMessageContent.message);
   });
+
+  test('should be returns adapted data in getClean', () => {
+    const { sut } = makeSut();
+
+    const fakeId = 'any_id';
+    const fakeUser = makeFakeUser();
+    const fakeMessageContent = {
+      message: 'any_message'
+    };
+    const testable = sut.create(fakeId, fakeUser, fakeMessageContent);
+
+    expect(testable.getClean()).toEqual({
+      id: 'any_id',
+      sender: {
+        id: 'any_id',
+        name: 'any_name',
+        username: 'any_username',
+        password: 'any_password'
+      },
+      content: {
+        message: 'any_message'
+      }
+    });
+  });
 });
