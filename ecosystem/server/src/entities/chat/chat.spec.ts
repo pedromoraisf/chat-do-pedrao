@@ -22,4 +22,38 @@ describe('Entitiy Chat Tests', () => {
 
     expect(chat.addMessage(newMessage)).toBeTruthy();
   });
+
+  test('should be returns adapted data in getClean', () => {
+    const { chat } = makeFakeGlobalChatWithThreeInitialMessages();
+
+    const sameSender = {
+      id: 'any_id',
+      name: 'any_name',
+      username: 'any_username',
+      password: 'any_password'
+    };
+    const sameContentMessage = {
+      message: 'any_fake_message_content'
+    };
+    expect(chat.getClean()).toEqual({
+      id: 'global_chat',
+      messages: [
+        {
+          id: 'any_id',
+          sender: sameSender,
+          content: sameContentMessage
+        },
+        {
+          id: 'any_id',
+          sender: sameSender,
+          content: sameContentMessage
+        },
+        {
+          id: 'any_id',
+          sender: sameSender,
+          content: sameContentMessage
+        }
+      ]
+    });
+  });
 });

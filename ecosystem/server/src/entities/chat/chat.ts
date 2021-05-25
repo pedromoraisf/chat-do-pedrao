@@ -33,4 +33,11 @@ export class Chat {
     this.messages.push(message);
     return !!this.messages.includes(message);
   }
+
+  public getClean() {
+    return {
+      id: this.id.value,
+      messages: this.messages.map((message) => message.getClean())
+    };
+  }
 }
