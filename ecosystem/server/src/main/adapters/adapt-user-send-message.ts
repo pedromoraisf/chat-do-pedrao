@@ -3,8 +3,8 @@ import { Socket } from 'socket.io';
 
 export const adaptUserSendMessage = (socket: Socket, controller: Controller) => {
   return async (payload: any) => {
-    const controllerReponse: PayloadReturn = await controller.handle(payload);
-    socket.emit('broadcast-user-send-message', controllerReponse);
-    socket.broadcast.emit('broadcast-user-send-message', controllerReponse);
+    const controllerResponse: PayloadReturn = await controller.handle(payload);
+    socket.emit('broadcast-user-send-message', controllerResponse);
+    socket.broadcast.emit('broadcast-user-send-message', controllerResponse);
   };
 };
