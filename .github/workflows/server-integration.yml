@@ -1,4 +1,4 @@
-name: 🤖 Server CI Workflow 🤖
+name: 🤖 Server Test Routine CI
 
 on:
   push:
@@ -26,4 +26,4 @@ jobs:
         env:
           NODE_ENV: test
       - run: npm install
-      - run: npm run test:ci
+      - run: npm run server:test:ci
