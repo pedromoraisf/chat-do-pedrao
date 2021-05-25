@@ -49,13 +49,21 @@ describe('User Send Message Integration Tests', () => {
       }
     };
     clientSocket.on('broadcast-user-send-message', (payload: any) => {
-      expect(payload.statusCode).toBe(200);
-      expect(payload.body?.id).toEqual({ id: testable.id });
-      expect(payload.body?.sender).toHaveProperty('id');
-      expect(payload.body?.sender).toHaveProperty('name');
-      expect(payload.body?.sender).toHaveProperty('username');
-      expect(payload.body?.sender).toHaveProperty('password');
-      expect(payload.body?.content).toEqual({ content: testable.content.message });
+      expect(payload).toEqual({
+        statusCode: 200,
+        body: {
+          id: 'any_message_id',
+          sender: {
+            id: 'any_user_id',
+            name: 'any_name',
+            username: 'any_username',
+            password: 'any_password'
+          },
+          content: {
+            message: 'any_message_content'
+          }
+        }
+      });
       done();
     });
     clientSocket.emit('user-send-message', testable);

@@ -70,4 +70,24 @@ describe('User Send Message Controller Tests', () => {
 
     expect(testable.statusCode).toBe(500);
   });
+
+  test('should be returns adapted data in ok', async () => {
+    const { sut } = makeSut();
+    const testable = await sut.handle(makeFakePayloadReceive());
+    expect(testable).toEqual({
+      statusCode: 200,
+      body: {
+        id: 'any_id',
+        sender: {
+          id: 'any_id',
+          name: 'any_name',
+          username: 'any_username',
+          password: 'any_password'
+        },
+        content: {
+          message: 'any_message'
+        }
+      }
+    });
+  });
 });

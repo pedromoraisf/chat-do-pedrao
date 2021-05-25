@@ -3,6 +3,7 @@ import { Controller, PayloadReceive, PayloadReturn } from '@presentation/control
 import { badRequest, ok } from '@presentation/controllers/wss/helpers/responses';
 import { MissingParamError } from '@presentation/errors';
 import { mapError } from '@presentation/controllers/wss/helpers/error-mapper';
+import { adapterUserSendedMessage } from '@presentation/controllers/wss/user-send-message/adapter';
 
 export class UserSendMessageController implements Controller {
   protected readonly userSendMessageUseCase: UserSendMessage;
@@ -32,7 +33,7 @@ export class UserSendMessageController implements Controller {
     try {
       const userMessage = await this.userSendMessageUseCase.send(normalizedPayloadReceive);
       if (userMessage.isLeft()) return mapError(userMessage.value.layer)(userMessage.value);
-      return ok(userMessage.value);
+      return ok(adapterUserSendedMessage(userMessage.value));
     } catch (e) {
       const error = e.value;
       return mapError(error.layer)(error);
