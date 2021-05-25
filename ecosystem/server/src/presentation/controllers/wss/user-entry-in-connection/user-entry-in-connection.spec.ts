@@ -39,4 +39,29 @@ describe('User Entry In Connection Controller Tests', () => {
     const testable = await sut.handle();
     expect(testable?.statusCode).toBe(500);
   });
+
+  test('should be returns adapted data in ok', async () => {
+    const { sut } = makeSut();
+    const testable = await sut.handle();
+    expect(testable).toEqual({
+      statusCode: 200,
+      body: {
+        id: 'global_chat',
+        messages: [
+          {
+            id: 'any_id',
+            sender: {
+              id: 'any_id',
+              name: 'any_name',
+              username: 'any_username',
+              password: 'any_password'
+            },
+            content: {
+              message: 'any_message'
+            }
+          }
+        ]
+      }
+    });
+  });
 });

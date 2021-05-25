@@ -36,9 +36,13 @@ describe('User Entry In Connection Integration Tests', () => {
 
   test('functionality', (done) => {
     clientSocket.on('response-user-entry-in-connection', (payload: any) => {
-      expect(payload.statusCode).toBe(200);
-      expect(payload.body?.id).toEqual({ id: 'global_chat' });
-      expect(Array.isArray(payload.body?.messages)).toBe(true);
+      expect(payload).toEqual({
+        statusCode: 200,
+        body: {
+          id: 'global_chat',
+          messages: []
+        }
+      });
       done();
     });
     clientSocket.emit('user-entry-in-connection', true);

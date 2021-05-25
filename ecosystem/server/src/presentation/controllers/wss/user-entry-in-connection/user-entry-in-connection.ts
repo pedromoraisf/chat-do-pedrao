@@ -14,7 +14,7 @@ export class UserEntryInConnectionController implements Controller {
     try {
       const initGlobalChat = await this.initializeGlobalChatUseCase.init();
       if (initGlobalChat.isLeft()) return mapError(initGlobalChat.value.layer)(initGlobalChat.value);
-      return ok(initGlobalChat.value);
+      return ok(initGlobalChat.value.getClean());
     } catch (e) {
       const error = e.value;
       return mapError(error.layer)(error);
