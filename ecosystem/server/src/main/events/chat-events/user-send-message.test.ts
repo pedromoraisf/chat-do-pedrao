@@ -48,6 +48,9 @@ describe('User Send Message Integration Tests', () => {
         message: 'any_message_content'
       }
     };
+
+    clientSocket.emit('user-send-message', testable);
+
     clientSocket.on('broadcast-user-send-message', (payload: any) => {
       expect(payload).toEqual({
         statusCode: 200,
@@ -66,6 +69,5 @@ describe('User Send Message Integration Tests', () => {
       });
       done();
     });
-    clientSocket.emit('user-send-message', testable);
   });
 });
